@@ -5,7 +5,7 @@ function UserProfile({params}: any) {
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <h1>UserProfile Page</h1>
       <hr />
-      <p className="text-4xl">Profile page {params.id}</p>
+      <p className="text-xl font-semibold">Profile page {params.id}</p>
     </div>
   );
 }
