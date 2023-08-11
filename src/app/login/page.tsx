@@ -39,7 +39,7 @@ const Login = () => {
   }, [user]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="flex flex-col items-center justify-center  min-h-screen py-2">
       <h1>{loading ? "Processing" : "Login"} </h1>
       <hr />
 
@@ -70,9 +70,15 @@ const Login = () => {
         {buttonDisabled ? "No login" : " Login"}
       </button>
 
-      <Link href={"/signup"} className="underline">
-        Create Account
-      </Link>
+      <div className="flex flex-col items-start gap-5  justify-start">
+        <Link href={"/signup"} className="underline">
+          Create Account
+        </Link>
+
+        <Link href={"/reset"} className="underline">
+          Forgot password?
+        </Link>
+      </div>
     </div>
   );
 };
