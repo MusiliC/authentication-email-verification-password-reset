@@ -75,7 +75,7 @@ const Login = () => {
           Create Account
         </Link>
 
-        <Link href={"/reset"} className="underline">
+        <Link href={"/forgotpassword"} className="underline">
           Forgot password?
         </Link>
       </div>
