@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
     const { email } = reqBody;
-   
+
     //check if user exist
     const existingUser = await User.findOne({ email });
 
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
     console.log("reset password link sent to your email");
 
     return NextResponse.json({
-      message: "reset email send successfully",
+      message: "reset password send successfully",
       success: true,
     });
   } catch (error: any) {
