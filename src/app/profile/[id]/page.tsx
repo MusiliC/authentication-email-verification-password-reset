@@ -4,6 +4,7 @@ import React from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 function UserProfile({ params }: any) {
   const router = useRouter();
@@ -36,12 +37,9 @@ function UserProfile({ params }: any) {
         <br />
 
         <div className="flex justify-center items-center">
-          <button
-            onClick={logOut}
-            className="submit"
-          >
-            Log out
-          </button>
+          <Link href={"/profile"}>
+            <button className="submit">Back to Profile</button>
+          </Link>
         </div>
       </div>
     </section>

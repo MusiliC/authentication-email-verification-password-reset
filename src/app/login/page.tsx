@@ -66,7 +66,7 @@ const Login = () => {
         />
 
         <button onClick={OnLogin} className="submit">
-          {buttonDisabled ? "No login" : " Login"}
+          {buttonDisabled ? "Enter Credentials" : " Login"}
         </button>
 
         <div className="flex mt-5 flex-col items-start gap-3  justify-start">

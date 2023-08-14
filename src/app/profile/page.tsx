@@ -9,6 +9,7 @@ function Profile() {
   const router = useRouter();
   const [data, setData] = React.useState("nothing");
   const [username, setUsername] = React.useState("");
+  const [email, setEmail] = React.useState("");
 
   const logOut = async () => {
     try {
@@ -27,6 +28,7 @@ function Profile() {
 
     setData(res.data.data._id);
     setUsername(res.data.data.username);
+    setEmail(res.data.data.email);
   };
 
   return (
@@ -35,18 +37,20 @@ function Profile() {
         <h1 className="text-lg font-bold text-center text-[#000]">
           Profile Page
         </h1>
-        <h2 className="p-2  mt-5">
+        <h2 className="font-semibold  mt-5">
           {data === "nothing" ? (
             "Click the button below to get user details!"
           ) : (
-            <Link href={`/profile/${data}`}>
-              Your username is{" "}
-              <span className="font-semibold text-xl text-blue-700 tracking-widest">
-                {username}
-              </span>
-            </Link>
+            <Link href={`/profile/${data}`}>Your Credentials</Link>
           )}
         </h2>
+        <br />
+
+        <div className="flex flex-col gap-2">
+          <p>Username: {username}</p>
+          <p>Email: {email}</p>
+        </div>
+
         <br />
 
         <div>

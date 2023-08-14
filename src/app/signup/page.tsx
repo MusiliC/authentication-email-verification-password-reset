@@ -80,7 +80,7 @@ const SignUp = () => {
         />
 
         <button onClick={OnSignUp} className="submit">
-          {buttonDisabled ? "No sign Up" : " Sign Up"}
+          {buttonDisabled ? "Enter Credentials" : " Sign Up"}
         </button>
 
         <Link
