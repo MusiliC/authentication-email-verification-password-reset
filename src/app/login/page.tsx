@@ -39,47 +39,56 @@ const Login = () => {
   }, [user]);
 
   return (
-    <div className="flex flex-col items-center justify-center  min-h-screen py-2">
-      <h1>{loading ? "Processing" : "Login"} </h1>
-      <hr />
+    <section className="w-full min-h-[100vh] flex justify-center items-center ">
+      <div className="mainContainer">
+        <h1 className="text-lg font-bold text-center text-[#000]">
+          {loading ? "Processing" : "Login"}{" "}
+        </h1>
 
-      <label htmlFor="username">email</label>
-      <input
-        className="p-3 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-gray-600"
-        id="username"
-        type="text"
-        value={user.email}
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
-        placeholder="email"
-      />
+        <label htmlFor="username">Email</label>
+        <input
+          className="formInput"
+          id="username"
+          type="text"
+          value={user.email}
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+          placeholder="email"
+        />
 
-      <label htmlFor="username">password</label>
-      <input
-        className="p-3 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-gray-600"
-        id="password"
-        type="password"
-        value={user.password}
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
-        placeholder="password"
-      />
+        <label htmlFor="username">Password</label>
+        <input
+          className="formInput"
+          id="password"
+          type="password"
+          value={user.password}
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+          placeholder="password"
+        />
 
-      <button
-        onClick={OnLogin}
-        className="p-3 border bg-gray-200 rounded-md mb-4 hover:outline-none hover:bg-gray-400"
-      >
-        {buttonDisabled ? "No login" : " Login"}
-      </button>
+        <button onClick={OnLogin} className="submit">
+          {buttonDisabled ? "No login" : " Login"}
+        </button>
 
-      <div className="flex flex-col items-start gap-5  justify-start">
-        <Link href={"/signup"} className="underline">
-          Create Account
-        </Link>
+        <div className="flex mt-5 flex-col items-start gap-3  justify-start">
+          <div className="flex gap-2 items-center">
+            <p>No account?</p>
+            <Link
+              href={"/signup"}
+              className="underline text-blue-900 font-semibold"
+            >
+              Create Account
+            </Link>
+          </div>
 
-        <Link href={"/forgotpassword"} className="underline">
-          Forgot password?
-        </Link>
+          <Link
+            href={"/forgotpassword"}
+            className="underline text-blue-900 font-semibold"
+          >
+            Forgot password?
+          </Link>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

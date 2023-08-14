@@ -10,8 +10,9 @@ export default function verifyEmailPage() {
 
   const verifyUserEmail = async () => {
     try {
-      await axios.post("/api/users/verifyemail", { token });
+      const res = await axios.post("/api/users/verifyemail", { token });
       setVerified(true);
+      console.log(res.data);
     } catch (error: any) {
       setError(true);
       console.log(error);
@@ -30,22 +31,37 @@ export default function verifyEmailPage() {
   }, [token]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1 className="text-xl">Verify Email</h1>
-      <h2 className="p-2 bg-orange-500 ">{token ? `${token}` : "No token"}</h2>
-
-      {verified && (
+    <section className="w-full min-h-[100vh] flex justify-center items-center ">
+      <div className="mainContainer">
         <div>
-          <h2 className="text-lg">Email verified</h2>
-          <Link href={"/login"}>Login</Link>
+          <h1 className="text-lg font-bold text-center text-[#000]">
+            Verify Email
+          </h1>
+          <h2 className="p-3 bg-[#4f46e5]  mt-5 rounded-md ">
+            <span className="text-[#ffff] font-semibold text-lg tracking-[0.12rem]">
+              {token ? `Welcome Brian Musili` : "No token"}
+            </span>
+          </h2>
         </div>
-      )}
 
-      {error && (
-        <div>
-          <h2 className="text-lg p-2 bg-red-500 text-white">Error</h2>
-        </div>
-      )}
-    </div>
+        {verified && (
+          <div className="mt-5 flex flex-col gap-3">
+            <h2 className="text-lg">Your Email is verified</h2>
+            <Link
+              href={"/login"}
+              className="underline  text-blue-900 font-semibold"
+            >
+              Go to Login
+            </Link>
+          </div>
+        )}
+
+        {error && (
+          <div>
+            <h2 className="text-lg p-2 bg-red-500 text-white">Error</h2>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }

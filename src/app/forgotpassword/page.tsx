@@ -2,6 +2,7 @@
 import React from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 function ForgotPassword() {
   const [email, setEmail] = React.useState("");
@@ -22,28 +23,38 @@ function ForgotPassword() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center  min-h-screen py-2">
-      <h1>{loading ? "Processing" : "Your Email"} </h1>
+    <section className="w-full min-h-[100vh] flex justify-center items-center ">
+      <div className="mainContainer">
+        <h1 className="text-lg font-bold text-center text-[#000]">
+          {loading ? "Processing" : "Your Email"}{" "}
+        </h1>
 
-      <br />
+        <br />
 
-      <label htmlFor="username">Enter the email with your account:</label>
-      <input
-        className="p-3 my-1 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-gray-600"
-        id="username"
-        type="text"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="email"
-      />
+        <label htmlFor="username">Enter the email with your account:</label>
+        <input
+          className="formInput"
+          id="username"
+          type="text"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="email"
+        />
 
-      <button
-        onClick={sendEmail}
-        className="p-3 border bg-gray-200 rounded-md mb-4 hover:outline-none hover:bg-gray-400"
-      >
-        Submit
-      </button>
-    </div>
+        <div className="my-1 mt-5">
+          <button onClick={sendEmail} className="submit">
+            Submit
+          </button>
+
+          <Link
+            href={"/login"}
+            className="underline text-blue-900 font-semibold mt-5"
+          >
+            Back to login
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }
 

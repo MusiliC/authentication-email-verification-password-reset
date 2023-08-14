@@ -8,6 +8,7 @@ import Link from "next/link";
 function Profile() {
   const router = useRouter();
   const [data, setData] = React.useState("nothing");
+  const [username, setUsername] = React.useState("");
 
   const logOut = async () => {
     try {
@@ -23,34 +24,47 @@ function Profile() {
   const getUserDetails = async () => {
     const res = await axios.get("/api/users/me");
     console.log(res.data);
+
     setData(res.data.data._id);
+    setUsername(res.data.data.username);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1>Profile Page</h1>
-      <h2 className="p-2 rounded-md bg-green-200">
-        {data === "nothing" ? (
-          "Nothing"
-        ) : (
-          <Link href={`/profile/${data}`}>{data}</Link>
-        )}
-      </h2>
-      <hr />
+    <section className="w-full min-h-[100vh] flex justify-center items-center ">
+      <div className="mainContainer">
+        <h1 className="text-lg font-bold text-center text-[#000]">
+          Profile Page
+        </h1>
+        <h2 className="p-2  mt-5">
+          {data === "nothing" ? (
+            "Click the button below to get user details!"
+          ) : (
+            <Link href={`/profile/${data}`}>
+              Your username is{" "}
+              <span className="font-semibold text-xl text-blue-700 tracking-widest">
+                {username}
+              </span>
+            </Link>
+          )}
+        </h2>
+        <br />
 
-      <button
-        onClick={logOut}
-        className="p-3 my-4 border bg-gray-200 rounded-md mb-4 hover:outline-none hover:bg-gray-400"
-      >
-        Log out
-      </button>
-      <button
-        onClick={getUserDetails}
-        className="p-3 border bg-green-600 rounded-md mb-4 hover:outline-none hover:bg-gray-300"
-      >
-        Get User Details
-      </button>
-    </div>
+        <div>
+          <button onClick={getUserDetails} className="submit">
+            Get User Details
+          </button>
+        </div>
+
+        <div className="flex justify-center items-center">
+          <button
+            onClick={logOut}
+            className="p-3 my-4 border bg-gray-200 rounded-md mb-4 hover:outline-none hover:bg-gray-400"
+          >
+            Log out
+          </button>
+        </div>
+      </div>
+    </section>
   );
 }
 

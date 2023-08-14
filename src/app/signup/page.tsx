@@ -21,7 +21,7 @@ const SignUp = () => {
       setLoading(true);
       const res = await axios.post("api/users/signup", user);
       console.log("Sign up success", res.data);
-      router.push("/login")
+      router.push("/login");
     } catch (error: any) {
       console.log("Sign up failed", error.message);
       toast.error(error.message);
@@ -43,50 +43,54 @@ const SignUp = () => {
   }, [user]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1>{loading ? "Processing" : "Sign Up"} </h1>
-      <hr />
-      <label htmlFor="username">username</label>
-      <input
-        className="p-3 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-gray-600"
-        id="username"
-        type="text"
-        value={user.username}
-        onChange={(e) => setUser({ ...user, username: e.target.value })}
-        placeholder="username"
-      />
+    <section className="w-full min-h-[100vh] flex justify-center items-center ">
+      <div className="mainContainer">
+        <h1 className="text-lg font-bold text-center text-[#000]">
+          {loading ? "Processing" : "Sign Up"}{" "}
+        </h1>
+        <br />
+        <label htmlFor="username">Username</label>
+        <input
+          className="formInput"
+          id="username"
+          type="text"
+          value={user.username}
+          onChange={(e) => setUser({ ...user, username: e.target.value })}
+          placeholder="username"
+        />
 
-      <label htmlFor="username">email</label>
-      <input
-        className="p-3 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-gray-600"
-        id="username"
-        type="text"
-        value={user.email}
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
-        placeholder="email"
-      />
+        <label htmlFor="username">Email</label>
+        <input
+          className="formInput"
+          id="email"
+          type="text"
+          value={user.email}
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+          placeholder="email"
+        />
 
-      <label htmlFor="username">password</label>
-      <input
-        className="p-3 border border-gray-300 rounded-md mb-4 focus:outline-none focus:border-gray-600"
-        id="password"
-        type="password"
-        value={user.password}
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
-        placeholder="password"
-      />
+        <label htmlFor="username">Password</label>
+        <input
+          className="formInput"
+          id="password"
+          type="password"
+          value={user.password}
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+          placeholder="password"
+        />
 
-      <button
-        onClick={OnSignUp}
-        className="p-3 border bg-gray-200 rounded-md mb-4 hover:outline-none hover:bg-gray-400"
-      >
-        {buttonDisabled ? "No sign Up" : " Sign Up"}
-      </button>
+        <button onClick={OnSignUp} className="submit">
+          {buttonDisabled ? "No sign Up" : " Sign Up"}
+        </button>
 
-      <Link href={"/login"} className="underline">
-        Visit login
-      </Link>
-    </div>
+        <Link
+          href={"/login"}
+          className="underline text-blue-900 font-semibold mt-5"
+        >
+          Back to login
+        </Link>
+      </div>
+    </section>
   );
 };
 
