@@ -31,12 +31,8 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
     const mailOptionsForVerifyEmail = {
       from: "musili@gmail.com",
       to: email,
-      subject: emailType === "VERIFY" ? "Verify your email" : "Reset password",
-      html: `<p>Click <a href="${
-        process.env.DOMAIN
-      }/verifyemail?token=${hashedToken}" >here</a> to ${
-        emailType === "VERIFY" ? "verify your email" : "reset password"
-      }        
+      subject: "Verify your email",
+      html: `<p>Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}" >here</a> to verify your email       
       or copy and paste the link below in your browser <br/> <br/>
       ${process.env.DOMAIN}/verifyemail?token=${hashedToken}
       </p>`,
@@ -45,12 +41,8 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
     const mailOptionsForForgotPassword = {
       from: "musili@gmail.com",
       to: email,
-      subject: emailType === "VERIFY" ? "Verify your email" : "Reset password",
-      html: `<p>Click <a href="${
-        process.env.DOMAIN
-      }/verifyforgotpasswordtoken?token=${hashedToken}" >here</a> to ${
-        emailType === "VERIFY" ? "verify your email" : "reset password"
-      }        
+      subject: "Reset password",
+      html: `<p>Click <a href="${process.env.DOMAIN}/verifyforgotpasswordtoken?token=${hashedToken}" >here</a> to reset password       
       or copy and paste the link below in your browser <br/> <br/>
       ${process.env.DOMAIN}/verifyforgotpasswordtoken?token=${hashedToken}
       </p>`,
@@ -58,8 +50,13 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
 
     // const mailResponse = await transport.sendMail(mailOptions);
 
+    // const mailOptions =
+    //   emailType === mailOptionsForVerifyEmail
+    //     ? mailOptionsForVerifyEmail
+    //     : mailOptionsForForgotPassword;
+
     const mailOptions =
-      emailType === mailOptionsForVerifyEmail
+      emailType === "VERIFY"
         ? mailOptionsForVerifyEmail
         : mailOptionsForForgotPassword;
 
