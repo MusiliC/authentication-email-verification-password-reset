@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import toast from "react-hot-toast/headless";
+import toast, { Toaster } from "react-hot-toast";
 
 const Login = () => {
   const router = useRouter();
@@ -20,11 +20,12 @@ const Login = () => {
       setLoading(true);
       const res = await axios.post("api/users/login", user);
       console.log("Login success", res.data);
-      toast.success("Login success");
+      toast.success("Login success, Welcome!");
+
       router.push("/profile");
     } catch (error: any) {
       console.log("Login failed", error.message);
-      toast.error(error.message);
+      toast.error(`Login failed - ${error.message}`);
     } finally {
       setLoading(false);
     }
@@ -68,6 +69,7 @@ const Login = () => {
         <button onClick={OnLogin} className="submit">
           {buttonDisabled ? "Enter Credentials" : " Login"}
         </button>
+        <Toaster />
 
         <div className="flex mt-5 flex-col items-start gap-3  justify-start">
           <div className="flex gap-2 items-center">

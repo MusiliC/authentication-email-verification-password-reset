@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const SignUp = () => {
   const router = useRouter();
@@ -21,7 +21,8 @@ const SignUp = () => {
       setLoading(true);
       const res = await axios.post("api/users/signup", user);
       console.log("Sign up success", res.data);
-      router.push("/login");
+      toast.success("Sign up success!, Check Your email to verify");
+      // router.push("/login");
     } catch (error: any) {
       console.log("Sign up failed", error.message);
       toast.error(error.message);
@@ -90,6 +91,7 @@ const SignUp = () => {
           Back to login
         </Link>
       </div>
+      <Toaster />
     </section>
   );
 };

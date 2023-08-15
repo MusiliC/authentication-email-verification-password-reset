@@ -1,12 +1,15 @@
 "use client";
 import axios from "axios";
 import React, { useEffect } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 function VerifyForgotPassword() {
   const [token, setToken] = React.useState("");
   const [newPassword, setNewPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
+
+  const router = useRouter();
 
   const [loading, setLoading] = React.useState(false);
 
@@ -15,15 +18,18 @@ function VerifyForgotPassword() {
       try {
         setLoading(true);
         await axios.post("/api/users/resetpassword", { token, newPassword });
+        toast.success("Password set successful");
+        router.push("/login");
         console.log(token);
       } catch (error: any) {
         console.log("Password reset failed", error.message);
-        toast.error(error.message);
+        toast.error(`Password reset failed ${error.message}`);
       } finally {
         setLoading(false);
       }
     } else {
       console.log("Password does not match");
+      toast.error("Password does not macth");
     }
   };
 
@@ -37,7 +43,7 @@ function VerifyForgotPassword() {
     <section className="w-full min-h-[100vh] flex justify-center items-center">
       <div className="mainContainer">
         <h1 className="text-lg font-bold text-center text-[#000]">
-          {loading ? "Processing" : "Musili@gmail.com"}{" "}
+          {loading ? "Processing" : "Reset Password"}
         </h1>
 
         <br />
@@ -67,6 +73,7 @@ function VerifyForgotPassword() {
           </button>
         </div>
       </div>
+      <Toaster />
     </section>
   );
 }

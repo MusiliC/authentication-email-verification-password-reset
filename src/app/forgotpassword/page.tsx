@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
 
 function ForgotPassword() {
@@ -11,12 +11,12 @@ function ForgotPassword() {
   const sendEmail = async () => {
     try {
       setLoading(true);
-
       const res = await axios.post("api/users/forgotpassword", { email });
+      toast.success("Success! Check your email");
       console.log("Success", res.data);
     } catch (error: any) {
       console.log("Forgot password failed", error.message);
-      toast.error(error.message);
+      toast.error(`Forgot password failed -  ${error.message}`);
     } finally {
       setLoading(false);
     }
@@ -53,6 +53,7 @@ function ForgotPassword() {
             Back to login
           </Link>
         </div>
+        <Toaster />
       </div>
     </section>
   );

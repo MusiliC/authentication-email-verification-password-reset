@@ -2,22 +2,36 @@
 import axios from "axios";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function verifyEmailPage() {
   const [token, setToken] = useState("");
   const [verified, setVerified] = useState(false);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   const verifyUserEmail = async () => {
     try {
+      setLoading(true);
       const res = await axios.post("/api/users/verifyemail", { token });
       setVerified(true);
+      toast.success("Email verified");
       console.log(res.data);
     } catch (error: any) {
       setError(true);
+      toast.error(error.message)
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
+
+  // const getMe = async () => {
+  //   try {
+  //     const res = await axios.get("/api/users/me");
+  //     console.log(res);
+  //   } catch (error) {}
+  // };
 
   useEffect(() => {
     const urlToken = window.location.search.split("=")[1];
@@ -35,21 +49,22 @@ export default function verifyEmailPage() {
       <div className="mainContainer">
         <div>
           <h1 className="text-lg font-bold text-center text-[#000]">
-            Verify Email
+            {loading ? "Processing.." : "Verify Email"}
           </h1>
           <h2 className="p-3 bg-[#4f46e5]  mt-5 rounded-md ">
             <span className="text-[#ffff] font-semibold text-lg tracking-[0.12rem]">
-              {token ? `Welcome Brian Musili` : "No token"}
+              {token
+                ? `Welcome! to C-tech! Your email is verified`
+                : "No token"}
             </span>
           </h2>
         </div>
 
         {verified && (
-          <div className="mt-5 flex flex-col gap-3">
-            <h2 className="text-lg">Your Email is verified</h2>
+          <div className="mt-5 flex flex-col gap-3 items-center">
             <Link
               href={"/login"}
-              className="underline  text-blue-900 font-semibold"
+              className="underline text-lg text-blue-900 font-semibold"
             >
               Go to Login
             </Link>
@@ -62,6 +77,7 @@ export default function verifyEmailPage() {
           </div>
         )}
       </div>
+      <Toaster />
     </section>
   );
 }

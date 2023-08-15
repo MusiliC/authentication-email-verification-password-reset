@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import axios from "axios";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -10,6 +10,7 @@ function Profile() {
   const [data, setData] = React.useState("nothing");
   const [username, setUsername] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [loading, setLoading] = React.useState(false);
 
   const logOut = async () => {
     try {
@@ -23,19 +24,25 @@ function Profile() {
   };
 
   const getUserDetails = async () => {
-    const res = await axios.get("/api/users/me");
-    console.log(res.data);
-
-    setData(res.data.data._id);
-    setUsername(res.data.data.username);
-    setEmail(res.data.data.email);
+    try {
+      setLoading(true);
+      const res = await axios.get("/api/users/me");
+      setData(res.data.data._id);
+      setUsername(res.data.data.username);
+      setEmail(res.data.data.email);
+      toast.success("Successful");
+    } catch (error: any) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <section className="w-full min-h-[100vh] flex justify-center items-center ">
       <div className="mainContainer">
         <h1 className="text-lg font-bold text-center text-[#000]">
-          Profile Page
+          {loading ? "Processing" : " Profile Page"}
         </h1>
         <h2 className="font-semibold  mt-5">
           {data === "nothing" ? (
@@ -67,6 +74,7 @@ function Profile() {
             Log out
           </button>
         </div>
+        <Toaster />
       </div>
     </section>
   );
