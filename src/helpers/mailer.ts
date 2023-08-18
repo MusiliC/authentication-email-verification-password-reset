@@ -20,16 +20,20 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
     }
 
     var transport = nodemailer.createTransport({
-      host: "sandbox.smtp.mailtrap.io",
-      port: 2525,
+      host: "smtp.office365.com",
+      port: 587,
+      tls: {
+        ciphers: "SSLv3",
+        rejectUnauthorized: false,
+      },
       auth: {
-        user: process.env.NODEMAIL_USER,
-        pass: process.env.NODEMAIL_PASS,
+        user: process.env.EMAIL,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
     const mailOptionsForVerifyEmail = {
-      from: "musili@gmail.com",
+      from: process.env.EMAIL,
       to: email,
       subject: "Verify your email",
       html: `<p>Click <a href="${process.env.DOMAIN}/verifyemail?token=${hashedToken}" >here</a> to verify your email       
@@ -39,7 +43,7 @@ export const sendEmail = async ({ email, emailType, userId }: any) => {
     };
 
     const mailOptionsForForgotPassword = {
-      from: "musili@gmail.com",
+      from: process.env.EMAIL,
       to: email,
       subject: "Reset password",
       html: `<p>Click <a href="${process.env.DOMAIN}/verifyforgotpasswordtoken?token=${hashedToken}" >here</a> to reset password       
