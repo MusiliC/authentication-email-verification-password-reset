@@ -40,7 +40,7 @@ const Login = () => {
   }, [user]);
 
   return (
-    <section className="w-full min-h-[100vh] flex justify-center items-center ">
+    <section className="w-full min-h-[80vh] md:min-h-[100vh] flex justify-center items-center ">
       <div className="mainContainer">
         <h1 className="text-base md:text-lg font-bold text-center text-[#000]">
           {loading ? "Processing" : "Login"}{" "}

@@ -19,7 +19,7 @@ export default function verifyEmailPage() {
       console.log(res.data);
     } catch (error: any) {
       setError(true);
-      toast.error(error.message)
+      toast.error(error.message);
       console.log(error);
     } finally {
       setLoading(false);
@@ -45,10 +45,9 @@ export default function verifyEmailPage() {
   }, [token]);
 
   return (
-    <section className="w-full min-h-[100vh] flex justify-center items-center ">
+    <section className="w-full min-h-[80vh] md:min-h-[100vh] flex justify-center items-center ">
       <div className="mainContainer">
         <div>
-          className="w-full min-h-[100vh] flex justify-center items-center "
           <h2 className="p-3 bg-[#4f46e5]  mt-5 rounded-md ">
             <span className="text-[#ffff] font-semibold  md:text-lg tracking-[0.12rem]">
               {token
