@@ -22,12 +22,12 @@ function UserProfile({ params }: any) {
   return (
     <section className="w-full min-h-[100vh] flex justify-center items-center ">
       <div className="mainContainer">
-        <h1 className="text-lg font-bold text-center text-[#000]">
+        <h1 className="text-base md:text-lg font-bold text-center text-[#000]">
           UserProfile Page
         </h1>
         <hr />
         <br />
-        <p className="text-xl ">
+        <p className="text-lg md:text-xl ">
           This is your user token <br /> <br />
           <span className="font-semibold text-xl tracking-wider">
             {params.id}

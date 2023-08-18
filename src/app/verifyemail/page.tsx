@@ -48,11 +48,9 @@ export default function verifyEmailPage() {
     <section className="w-full min-h-[100vh] flex justify-center items-center ">
       <div className="mainContainer">
         <div>
-          <h1 className="text-lg font-bold text-center text-[#000]">
-            {loading ? "Processing.." : "Verify Email"}
-          </h1>
+          className="w-full min-h-[100vh] flex justify-center items-center "
           <h2 className="p-3 bg-[#4f46e5]  mt-5 rounded-md ">
-            <span className="text-[#ffff] font-semibold text-lg tracking-[0.12rem]">
+            <span className="text-[#ffff] font-semibold  md:text-lg tracking-[0.12rem]">
               {token
                 ? `Welcome! to C-tech! Your email is verified`
                 : "No token"}
@@ -64,7 +62,7 @@ export default function verifyEmailPage() {
           <div className="mt-5 flex flex-col gap-3 items-center">
             <Link
               href={"/login"}
-              className="underline text-lg text-blue-900 font-semibold"
+              className="underline text-base md:text-lg text-blue-900 font-semibold"
             >
               Go to Login
             </Link>
@@ -73,7 +71,9 @@ export default function verifyEmailPage() {
 
         {error && (
           <div>
-            <h2 className="text-lg p-2 bg-red-500 text-white">Error</h2>
+            <h2 className="text-base md:text-lg p-2 bg-red-500 text-white">
+              Error
+            </h2>
           </div>
         )}
       </div>

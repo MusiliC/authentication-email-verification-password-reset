@@ -41,10 +41,10 @@ function Profile() {
   return (
     <section className="w-full min-h-[100vh] flex justify-center items-center ">
       <div className="mainContainer">
-        <h1 className="text-lg font-bold text-center text-[#000]">
+        <h1 className="text-base md:text-lg font-bold text-center text-[#000]">
           {loading ? "Processing" : " Profile Page"}
         </h1>
-        <h2 className="font-semibold  mt-5">
+        <h2 className="font-semibold text-sm md:text-base mt-5">
           {data === "nothing" ? (
             "Click the button below to get user details!"
           ) : (
@@ -54,8 +54,8 @@ function Profile() {
         <br />
 
         <div className="flex flex-col gap-2">
-          <p>Username: {username}</p>
-          <p>Email: {email}</p>
+          <p className="text-sm md:text-base">Username: {username}</p>
+          <p className="text-sm md:text-base">Email: {email}</p>
         </div>
 
         <br />

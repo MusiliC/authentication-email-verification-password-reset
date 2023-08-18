@@ -42,11 +42,13 @@ const Login = () => {
   return (
     <section className="w-full min-h-[100vh] flex justify-center items-center ">
       <div className="mainContainer">
-        <h1 className="text-lg font-bold text-center text-[#000]">
+        <h1 className="text-base md:text-lg font-bold text-center text-[#000]">
           {loading ? "Processing" : "Login"}{" "}
         </h1>
 
-        <label htmlFor="username">Email</label>
+        <label htmlFor="username" className="text-sm md:text-base">
+          Email
+        </label>
         <input
           className="formInput"
           id="username"
@@ -56,7 +58,9 @@ const Login = () => {
           placeholder="email"
         />
 
-        <label htmlFor="username">Password</label>
+        <label htmlFor="username" className="text-sm md:text-base">
+          Password
+        </label>
         <input
           className="formInput"
           id="password"
@@ -73,10 +77,10 @@ const Login = () => {
 
         <div className="flex mt-5 flex-col items-start gap-3  justify-start">
           <div className="flex gap-2 items-center">
-            <p>No account?</p>
+            <p className="text-sm md:text-base">No account?</p>
             <Link
               href={"/signup"}
-              className="underline text-blue-900 font-semibold"
+              className="underline text-sm md:text-base text-blue-900 font-semibold"
             >
               Create Account
             </Link>
@@ -84,7 +88,7 @@ const Login = () => {
 
           <Link
             href={"/forgotpassword"}
-            className="underline text-blue-900 font-semibold"
+            className="underline text-sm md:text-base text-blue-900 font-semibold"
           >
             Forgot password?
           </Link>

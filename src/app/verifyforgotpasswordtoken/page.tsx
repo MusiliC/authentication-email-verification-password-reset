@@ -42,13 +42,15 @@ function VerifyForgotPassword() {
   return (
     <section className="w-full min-h-[100vh] flex justify-center items-center">
       <div className="mainContainer">
-        <h1 className="text-lg font-bold text-center text-[#000]">
+        <h1 className="text-base md:text-lg font-bold text-center text-[#000]">
           {loading ? "Processing" : "Reset Password"}
         </h1>
 
         <br />
 
-        <label htmlFor="username">Enter new password:</label>
+        <label htmlFor="username" className="text-sm md:text-base">
+          Enter new password:
+        </label>
         <input
           className="formInput"
           id="username"
@@ -57,7 +59,9 @@ function VerifyForgotPassword() {
           onChange={(e) => setNewPassword(e.target.value)}
           placeholder="new password"
         />
-        <label htmlFor="username">Confirm New Password:</label>
+        <label htmlFor="username" className="text-sm md:text-base">
+          Confirm New Password:
+        </label>
         <input
           className="formInput"
           id="username"

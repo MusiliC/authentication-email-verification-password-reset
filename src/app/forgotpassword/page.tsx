@@ -3,10 +3,13 @@ import React from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 function ForgotPassword() {
   const [email, setEmail] = React.useState("");
   const [loading, setLoading] = React.useState(false);
+
+  const router = useRouter();
 
   const sendEmail = async () => {
     try {
@@ -14,6 +17,7 @@ function ForgotPassword() {
       const res = await axios.post("api/users/forgotpassword", { email });
       toast.success("Success! Check your email");
       console.log("Success", res.data);
+      router.push("/success");
     } catch (error: any) {
       console.log("Forgot password failed", error.message);
       toast.error(`Forgot password failed -  ${error.message}`);
@@ -25,13 +29,15 @@ function ForgotPassword() {
   return (
     <section className="w-full min-h-[100vh] flex justify-center items-center ">
       <div className="mainContainer">
-        <h1 className="text-lg font-bold text-center text-[#000]">
+        <h1 className="text-base md:text-lg font-bold text-center text-[#000]">
           {loading ? "Processing" : "Your Email"}{" "}
         </h1>
 
         <br />
 
-        <label htmlFor="username">Enter the email with your account:</label>
+        <label htmlFor="username text-sm md:text-base">
+          Enter the email with your account:
+        </label>
         <input
           className="formInput"
           id="username"
@@ -48,7 +54,7 @@ function ForgotPassword() {
 
           <Link
             href={"/login"}
-            className="underline text-blue-900 font-semibold mt-5"
+            className="text-sm md:text-base underline text-blue-900 font-semibold mt-5"
           >
             Back to login
           </Link>

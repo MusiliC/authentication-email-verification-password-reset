@@ -22,7 +22,7 @@ const SignUp = () => {
       const res = await axios.post("api/users/signup", user);
       console.log("Sign up success", res.data);
       toast.success("Sign up success!, Check Your email to verify");
-      // router.push("/login");
+      router.push("/success");
     } catch (error: any) {
       console.log("Sign up failed", error.message);
       toast.error(error.message);
@@ -46,11 +46,13 @@ const SignUp = () => {
   return (
     <section className="w-full min-h-[100vh] flex justify-center items-center ">
       <div className="mainContainer">
-        <h1 className="text-lg font-bold text-center text-[#000]">
+        <h1 className="text-sm md:text-lg font-bold text-center text-[#000]">
           {loading ? "Processing" : "Sign Up"}{" "}
         </h1>
         <br />
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username" className="text-sm md:text-base">
+          Username
+        </label>
         <input
           className="formInput"
           id="username"
@@ -60,7 +62,9 @@ const SignUp = () => {
           placeholder="username"
         />
 
-        <label htmlFor="username">Email</label>
+        <label htmlFor="username" className="text-sm md:text-base">
+          Email
+        </label>
         <input
           className="formInput"
           id="email"
@@ -70,7 +74,9 @@ const SignUp = () => {
           placeholder="email"
         />
 
-        <label htmlFor="username">Password</label>
+        <label htmlFor="username" className="text-sm md:text-base">
+          Password
+        </label>
         <input
           className="formInput"
           id="password"
@@ -86,7 +92,7 @@ const SignUp = () => {
 
         <Link
           href={"/login"}
-          className="underline text-blue-900 font-semibold mt-5"
+          className="underline text-sm md:text-base text-blue-900 font-semibold mt-5"
         >
           Back to login
         </Link>
